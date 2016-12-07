@@ -98,27 +98,32 @@
                                     <frame key="frameInset" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" placeholderIntrinsicWidth="89" placeholderIntrinsicHeight="89" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="eoy-IC-hUb">
-                                            <frame key="frameInset" minX="1" width="89" height="89"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="89" placeholderIntrinsicHeight="89" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="eoy-IC-hUb">
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="eoy-IC-hUb" secondAttribute="height" multiplier="1:1" id="8HG-Xi-k6c"/>
                                                 <constraint firstAttribute="height" constant="89" id="HYg-8O-RMT"/>
                                                 <constraint firstAttribute="width" constant="89" id="aiW-uT-HjA"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHx-eg-rQJ">
-                                            <frame key="frameInset" minX="98" minY="8" width="269" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHx-eg-rQJ">
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h6u-Wq-hKW" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
-                                            <frame key="frameInset" minX="98" minY="37" width="240" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h6u-Wq-hKW" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="h6u-Wq-hKW" firstAttribute="leading" secondItem="tQJ-eh-ayP" secondAttribute="leading" constant="98" id="1uy-ka-hh0"/>
+                                        <constraint firstItem="h6u-Wq-hKW" firstAttribute="leading" secondItem="MHx-eg-rQJ" secondAttribute="leading" id="5z3-cp-WnT"/>
+                                        <constraint firstItem="h6u-Wq-hKW" firstAttribute="leading" secondItem="eoy-IC-hUb" secondAttribute="trailing" constant="8" symbolic="YES" id="Cle-eP-tB9"/>
+                                        <constraint firstItem="h6u-Wq-hKW" firstAttribute="top" secondItem="MHx-eg-rQJ" secondAttribute="bottom" constant="8" symbolic="YES" id="QVG-Yn-U3Z"/>
+                                        <constraint firstItem="h6u-Wq-hKW" firstAttribute="bottom" secondItem="tQJ-eh-ayP" secondAttribute="bottomMargin" id="Rf2-Ce-FGn"/>
+                                        <constraint firstItem="eoy-IC-hUb" firstAttribute="centerY" secondItem="tQJ-eh-ayP" secondAttribute="centerY" id="RwH-Bw-yIa"/>
+                                        <constraint firstItem="h6u-Wq-hKW" firstAttribute="top" secondItem="tQJ-eh-ayP" secondAttribute="top" constant="37" id="l19-dv-JDv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="h6u-Wq-hKW" secondAttribute="trailing" constant="-26" id="tCH-Sr-GSH"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameLabel" destination="MHx-eg-rQJ" id="Qax-i7-lCr"/>

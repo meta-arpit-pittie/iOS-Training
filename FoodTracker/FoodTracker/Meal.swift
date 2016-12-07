@@ -9,22 +9,16 @@
 import UIKit
 
 class Meal: NSObject, NSCoding {
-    // MARK: Properties
     
     var name: String
     var photo: UIImage?
     var rating: Int
     
     // MARK: Archiving Paths
-    
-    //static var documentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    //static let archiveURL = documentsDirectory.appendPathComponent("meals")
-    
     static let documentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
     static let archiveURL = documentsDirectory.appendingPathComponent("meals")
     
     // MARK: Types
-    
     struct PropertyKey {
         static let nameKey = "name"
         static let photoKey = "photo"
@@ -32,7 +26,6 @@ class Meal: NSObject, NSCoding {
     }
     
     init?(name: String, photo: UIImage?, rating: Int) {
-        // Initialize stored properties.
         self.name = name
         self.photo = photo
         self.rating = rating
@@ -60,7 +53,6 @@ class Meal: NSObject, NSCoding {
         
         let rating = aDecoder.decodeInteger(forKey: PropertyKey.ratingKey)
         
-        // Must call designated initializer.
         self.init(name: name, photo: photo, rating: rating)
     }
 }

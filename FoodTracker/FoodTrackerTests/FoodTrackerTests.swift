@@ -12,7 +12,6 @@ import XCTest
 class FoodTrackerTests: XCTestCase {
     
     // MARK: FoodTracker Tests
-    // Tests to confirm that the Meal initializer returns when no name or a negative rating is provided.
     func testMealInitialization() {
         // Success Case.
         let potentialItem = Meal(name: "Newest Meal", photo: nil, rating: 5)
