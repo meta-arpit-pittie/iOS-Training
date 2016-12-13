@@ -13,6 +13,10 @@ class DisplayImageViewController: UIViewController, UIScrollViewDelegate {
     // MARK: Properties
     @IBOutlet weak var scrollDisplay: UIScrollView!
     @IBOutlet weak var imageDisplay: UIImageView!
+    @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
     var image: UIImage?
     
     override func viewDidLoad() {
@@ -27,16 +31,28 @@ class DisplayImageViewController: UIViewController, UIScrollViewDelegate {
         scrollDisplay.delegate = self
     }
     
+    override func viewDidLayoutSubviews() {
+        let widthScale = view.bounds.size.width / imageDisplay.bounds.width
+        let heightScale = view.bounds.size.height / imageDisplay.bounds.height
+        let minScale = min(widthScale, heightScale)
+        
+        scrollDisplay.minimumZoomScale = minScale
+        
+        scrollDisplay.zoomScale = minScale
+        
+        scrollViewDidZoom(scrollDisplay)
+    }
+    
     // MARK: Actions
     
     @IBAction func doubleTapZoom(_ sender: UITapGestureRecognizer) {
         sender.numberOfTapsRequired = 2
         
-        if scrollDisplay.zoomScale == 1 {
-            scrollDisplay.setZoomScale(3, animated: true)
+        if scrollDisplay.zoomScale == scrollDisplay.minimumZoomScale {
+            scrollDisplay.setZoomScale(scrollDisplay.minimumZoomScale + 2, animated: true)
         }
         else {
-            scrollDisplay.setZoomScale(1, animated: true)
+            scrollDisplay.setZoomScale(scrollDisplay.minimumZoomScale, animated: true)
         }
     }
     
@@ -44,6 +60,19 @@ class DisplayImageViewController: UIViewController, UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.imageDisplay
+    }
+    
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        
+        let yOffset = max(0, (view.bounds.size.height - imageDisplay.frame.height) / 2)
+        imageViewTopConstraint.constant = yOffset
+        imageViewBottomConstraint.constant = yOffset
+        
+        let xOffset = max(0, (view.bounds.size.width - imageDisplay.frame.width) / 2)
+        imageViewLeadingConstraint.constant = xOffset
+        imageViewTrailingConstraint.constant = xOffset
+        
+        view.layoutIfNeeded()
     }
     
     /*
