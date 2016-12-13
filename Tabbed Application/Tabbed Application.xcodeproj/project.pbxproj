@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8862D2341DF991FB00F8D6D9 /* DisplayImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8862D2331DF991FB00F8D6D9 /* DisplayImageViewController.swift */; };
 		88B26B811DF8096A00F48C3A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B26B801DF8096A00F48C3A /* AppDelegate.swift */; };
 		88B26B831DF8096A00F48C3A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B26B821DF8096A00F48C3A /* FirstViewController.swift */; };
 		88B26B851DF8096A00F48C3A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88B26B841DF8096A00F48C3A /* SecondViewController.swift */; };
@@ -14,9 +15,11 @@
 		88B26B8A1DF8096A00F48C3A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88B26B891DF8096A00F48C3A /* Assets.xcassets */; };
 		88B26B8D1DF8096A00F48C3A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88B26B8B1DF8096A00F48C3A /* LaunchScreen.storyboard */; };
 		88E6B0BB1DF839FB00FF9C7A /* InformationSavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6B0BA1DF839FB00FF9C7A /* InformationSavedViewController.swift */; };
+		88EEC2941DF96DE300656F05 /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EEC2931DF96DE300656F05 /* ImageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8862D2331DF991FB00F8D6D9 /* DisplayImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayImageViewController.swift; sourceTree = "<group>"; };
 		88B26B7D1DF8096A00F48C3A /* Tabbed Application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tabbed Application.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		88B26B801DF8096A00F48C3A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88B26B821DF8096A00F48C3A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		88B26B8C1DF8096A00F48C3A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88B26B8E1DF8096A00F48C3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		88E6B0BA1DF839FB00FF9C7A /* InformationSavedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InformationSavedViewController.swift; sourceTree = "<group>"; };
+		88EEC2931DF96DE300656F05 /* ImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				88B26B821DF8096A00F48C3A /* FirstViewController.swift */,
 				88B26B841DF8096A00F48C3A /* SecondViewController.swift */,
 				88B26B861DF8096A00F48C3A /* Main.storyboard */,
+				8862D2331DF991FB00F8D6D9 /* DisplayImageViewController.swift */,
+				88EEC2931DF96DE300656F05 /* ImageCollectionViewCell.swift */,
 				88B26B891DF8096A00F48C3A /* Assets.xcassets */,
 				88B26B8B1DF8096A00F48C3A /* LaunchScreen.storyboard */,
 				88B26B8E1DF8096A00F48C3A /* Info.plist */,
@@ -143,7 +149,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8862D2341DF991FB00F8D6D9 /* DisplayImageViewController.swift in Sources */,
 				88B26B851DF8096A00F48C3A /* SecondViewController.swift in Sources */,
+				88EEC2941DF96DE300656F05 /* ImageCollectionViewCell.swift in Sources */,
 				88B26B811DF8096A00F48C3A /* AppDelegate.swift in Sources */,
 				88B26B831DF8096A00F48C3A /* FirstViewController.swift in Sources */,
 				88E6B0BB1DF839FB00FF9C7A /* InformationSavedViewController.swift in Sources */,

@@ -21,10 +21,11 @@ class InformationSavedViewController: UIViewController, UINavigationControllerDe
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func cancel(_ sender: AnyObject) {
+    @IBAction func done(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     /*
+     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
