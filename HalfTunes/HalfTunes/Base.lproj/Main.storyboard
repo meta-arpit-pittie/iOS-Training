@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11198.2" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="HalfTunes" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" placeholder="Song name or artist" translatesAutoresizingMaskIntoConstraints="NO" id="rrc-3T-BRC">
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8fE-MX-W59">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TrackTableCell" rowHeight="62" id="YOa-nL-m92" customClass="TrackTableViewCell" customModule="HalfTunes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="62"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YOa-nL-m92" id="2nd-uf-Dua">
+                                            <frame key="frameInset" width="375" height="61"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWD-9d-giX">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3t-xo-K62">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="gzJ-Yb-15m"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifo-Tu-ogY">
+                                                    <state key="normal" title="Pause"/>
+                                                    <connections>
+                                                        <action selector="pauseOrResumeTapped:" destination="YOa-nL-m92" eventType="touchUpInside" id="nMB-I5-Pf2"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVR-Jx-67L">
+                                                    <state key="normal" title="Download"/>
+                                                    <connections>
+                                                        <action selector="downloadTapped:" destination="YOa-nL-m92" eventType="touchUpInside" id="xaq-F7-DN4"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eod-wj-0Hp">
+                                                    <state key="normal" title="Cancel"/>
+                                                    <connections>
+                                                        <action selector="cancelTapped:" destination="YOa-nL-m92" eventType="touchUpInside" id="5RT-nd-tJB"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIH-rl-xmQ">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="cVR-Jx-67L" firstAttribute="top" secondItem="2nd-uf-Dua" secondAttribute="topMargin" id="6TL-Ga-Yne"/>
+                                                <constraint firstAttribute="trailing" secondItem="i3t-xo-K62" secondAttribute="trailing" constant="135" id="8cU-Qf-XwM"/>
+                                                <constraint firstAttribute="trailing" secondItem="aWD-9d-giX" secondAttribute="trailing" constant="135" id="8dg-eY-khq"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="aIH-rl-xmQ" secondAttribute="trailing" id="BWy-1g-6eU"/>
+                                                <constraint firstItem="aIH-rl-xmQ" firstAttribute="top" secondItem="Eod-wj-0Hp" secondAttribute="bottom" constant="5" id="K48-fQ-oPL"/>
+                                                <constraint firstAttribute="trailing" secondItem="gzJ-Yb-15m" secondAttribute="trailing" constant="135" id="OAL-oG-ROW"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="cVR-Jx-67L" secondAttribute="trailing" constant="15" id="RgK-32-1fd"/>
+                                                <constraint firstItem="aWD-9d-giX" firstAttribute="top" secondItem="2nd-uf-Dua" secondAttribute="top" constant="2" id="XkO-CL-LPs"/>
+                                                <constraint firstItem="aIH-rl-xmQ" firstAttribute="leading" secondItem="gzJ-Yb-15m" secondAttribute="trailing" constant="10" id="Xrs-tO-bxO"/>
+                                                <constraint firstItem="gzJ-Yb-15m" firstAttribute="top" secondItem="i3t-xo-K62" secondAttribute="bottom" constant="5" id="Y7t-Ca-5CA"/>
+                                                <constraint firstItem="i3t-xo-K62" firstAttribute="leading" secondItem="2nd-uf-Dua" secondAttribute="leadingMargin" id="bjC-TM-vO4"/>
+                                                <constraint firstItem="gzJ-Yb-15m" firstAttribute="leading" secondItem="2nd-uf-Dua" secondAttribute="leadingMargin" id="gfS-Uh-Tle"/>
+                                                <constraint firstItem="Eod-wj-0Hp" firstAttribute="top" secondItem="2nd-uf-Dua" secondAttribute="topMargin" id="gta-i6-atM"/>
+                                                <constraint firstItem="aWD-9d-giX" firstAttribute="leading" secondItem="2nd-uf-Dua" secondAttribute="leadingMargin" id="kWX-e5-6IY"/>
+                                                <constraint firstItem="Ifo-Tu-ogY" firstAttribute="top" secondItem="2nd-uf-Dua" secondAttribute="topMargin" id="p1E-xw-gyD"/>
+                                                <constraint firstItem="Eod-wj-0Hp" firstAttribute="trailing" secondItem="2nd-uf-Dua" secondAttribute="trailingMargin" id="pay-58-i3h"/>
+                                                <constraint firstItem="Eod-wj-0Hp" firstAttribute="leading" secondItem="Ifo-Tu-ogY" secondAttribute="trailing" constant="29" id="yPi-ct-iAE"/>
+                                                <constraint firstItem="i3t-xo-K62" firstAttribute="top" secondItem="aWD-9d-giX" secondAttribute="bottom" constant="2" id="zLc-Tf-3kO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="artistLabel" destination="i3t-xo-K62" id="wXf-vF-Hda"/>
+                                            <outlet property="cancelButton" destination="Eod-wj-0Hp" id="SwG-0K-dG3"/>
+                                            <outlet property="downloadButton" destination="cVR-Jx-67L" id="kcH-3c-Hs2"/>
+                                            <outlet property="downloadProgress" destination="gzJ-Yb-15m" id="K8F-Eh-flR"/>
+                                            <outlet property="downloadProgressLabel" destination="aIH-rl-xmQ" id="uwu-o9-YP4"/>
+                                            <outlet property="pauseButton" destination="Ifo-Tu-ogY" id="sFj-Be-lGq"/>
+                                            <outlet property="trackLabel" destination="aWD-9d-giX" id="0Ke-tQ-OLW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="8fE-MX-W59" firstAttribute="top" secondItem="rrc-3T-BRC" secondAttribute="bottom" id="1X8-dh-ttP"/>
+                            <constraint firstItem="8fE-MX-W59" firstAttribute="top" secondItem="rrc-3T-BRC" secondAttribute="bottom" id="4Uh-yu-Ui2"/>
+                            <constraint firstItem="8fE-MX-W59" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="FaF-u5-XzS"/>
+                            <constraint firstItem="rrc-3T-BRC" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="GqU-zg-h1M"/>
+                            <constraint firstItem="rrc-3T-BRC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="W7r-2T-DmK"/>
+                            <constraint firstAttribute="trailing" secondItem="rrc-3T-BRC" secondAttribute="trailing" id="kWD-Qm-RuE"/>
+                            <constraint firstItem="8fE-MX-W59" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mH5-lp-iWP"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="8fE-MX-W59" secondAttribute="bottom" id="mjf-7O-yqm"/>
+                            <constraint firstAttribute="trailing" secondItem="8fE-MX-W59" secondAttribute="trailing" id="oh8-ls-L3s"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="rrc-3T-BRC" id="Uv2-Vq-Fkg"/>
+                        <outlet property="tableView" destination="8fE-MX-W59" id="hu1-vD-bPv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117.59999999999999" y="123.68815592203899"/>
+        </scene>
+    </scenes>
+</document>
