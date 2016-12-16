@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import MediaPlayer
 
 class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource, URLSessionDelegate, URLSessionDownloadDelegate, TrackCellDelegate {
 
@@ -46,6 +48,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
         }
     }
     
+    func cancelDownload(_ track: Tracks) {
+        if let urlString = track.previewUrl,
+            let download = activeDownloads[urlString] {
+            download.downloadTask?.cancel()
+            activeDownloads[urlString] = nil
+        }
+    }
+    
     func updateSearchResults(_ data: Data?) {
         searchResults.removeAll()
         do {
@@ -54,7 +64,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
                     for trackDictionary in array as! [AnyObject] {
                         if let trackDictionary = trackDictionary as? [String: AnyObject] {
                             let name = trackDictionary["trackName"] as? String
-                            let artist = trackDictionary["trackArtist"] as? String
+                            let artist = trackDictionary["artistName"] as? String
                             let previewUrl = trackDictionary["previewUrl"] as? String
                             
                             searchResults.append(Tracks(name: name, artist: artist, previewUrl: previewUrl))
@@ -105,9 +115,35 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     
     func localFileExistsForTrack(_ track: Tracks) -> Bool {
         if let urlString = track.previewUrl, let localUrl = localFilePathForUrl(urlString) {
-            var isDir: Bool = false
+            var isDir: ObjCBool = false
+            return FileManager.default.fileExists(atPath: localUrl.path, isDirectory: &isDir)
         }
         return false
+    }
+    
+    // MARK: Media Player
+    
+    func playDownloadedTrack(_ track: Tracks) {
+        if let urlString = track.previewUrl, let url = localFilePathForUrl(urlString) {
+            //let moviePlayer: mp
+            do {
+                let audioPlayer = try AVAudioPlayer(contentsOf: url)
+                
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
+                print("audio player")
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            
+            //let playerViewController = AVPlayerViewController()
+            //playerViewController.player = audioPlayer
+            
+            
+            
+            //let moviePlayers:MPMoviePlayerViewController! = MPMoviePlayerViewController(contentURL: url)
+            //presentMoviePlayerViewControllerAnimated(moviePlayers)
+        }
     }
 
     // MARK: UISearchBarDelegate
@@ -146,6 +182,16 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
             }
             dataTask?.resume()
         }
+    }
+    
+    // MARK: UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let track = searchResults[indexPath.row]
+        if localFileExistsForTrack(track) {
+            playDownloadedTrack(track)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     // MARK: UITableViewDataSource
@@ -239,6 +285,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate, UITableViewDe
     }
     
     func cancelTapped(_ cell: TrackTableViewCell) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            let track = searchResults[indexPath.row]
+            cancelDownload(track)
+        }
     }
     
     func downloadTapped(_ cell: TrackTableViewCell) {
