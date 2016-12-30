@@ -20,8 +20,47 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XlR-oE-t1C" userLabel="directions view">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSR-Fg-nXo">
+                                        <rect key="frame" x="20" y="5" width="335" height="40"/>
+                                        <state key="normal" title="Show Directions"/>
+                                        <connections>
+                                            <action selector="showDirectionsButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="doO-Xb-tQf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="2Y9-lg-Nn6"/>
+                                    <constraint firstAttribute="trailing" secondItem="eSR-Fg-nXo" secondAttribute="trailing" constant="20" id="MOE-uQ-eOQ"/>
+                                    <constraint firstItem="eSR-Fg-nXo" firstAttribute="leading" secondItem="XlR-oE-t1C" secondAttribute="leading" constant="20" id="gRU-Ea-d8v"/>
+                                    <constraint firstAttribute="bottom" secondItem="eSR-Fg-nXo" secondAttribute="bottom" constant="5" id="k1S-by-6eY"/>
+                                    <constraint firstItem="eSR-Fg-nXo" firstAttribute="top" secondItem="XlR-oE-t1C" secondAttribute="top" constant="5" id="lSq-ha-Agc"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Dd-ug-NmY" userLabel="map view" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="XlR-oE-t1C" secondAttribute="bottom" id="0N1-0i-zUV"/>
+                            <constraint firstItem="7Dd-ug-NmY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Egq-ZY-cdF"/>
+                            <constraint firstItem="XlR-oE-t1C" firstAttribute="top" secondItem="7Dd-ug-NmY" secondAttribute="bottom" id="GpN-Lm-LOO"/>
+                            <constraint firstAttribute="trailing" secondItem="7Dd-ug-NmY" secondAttribute="trailing" id="Nsb-bd-PSh"/>
+                            <constraint firstItem="XlR-oE-t1C" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="O66-mZ-zO2"/>
+                            <constraint firstAttribute="trailing" secondItem="XlR-oE-t1C" secondAttribute="trailing" id="t5w-DI-kcK"/>
+                            <constraint firstItem="7Dd-ug-NmY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="tau-Qc-bp1"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapDisplayView" destination="7Dd-ug-NmY" id="Ek1-9b-x7m"/>
+                        <outlet property="mapView" destination="7Dd-ug-NmY" id="ruh-Sj-pTW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
