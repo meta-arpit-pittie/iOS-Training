@@ -38,6 +38,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         mapDisplayView.settings.myLocationButton = true
         mapDisplayView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
+        let marker = GMSMarker()
+        marker.position = camera.target
+        marker.map = mapView
+        
         mapDisplayView = mapView
     }
     
@@ -64,21 +68,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     // MARK: Actions
     @IBAction func showDirectionsButtonAction(_ sender: Any) {
-        let url = URL(string: "comgooglemaps://?json?origin=\(18.5235),\(73.7184)&destination=\(18.7603),\(73.8630)&key=AIzaSyDNkeUKOzjTcXzAubHnDdK__C38PLKbrYg")
+        
+        let url = URL(string: "https://maps.googleapis.com/maps/api/directions/json?origin=\(19.075),\(72.877)&destination=\(26.912),\(75.787)&key=AIzaSyDNkeUKOzjTcXzAubHnDdK__C38PLKbrYg")
         let request = URLRequest(url: url!)
         let session = URLSession(configuration: .default)
         
         let task = session.dataTask(with: request) {
             data, response, error in
             do {
-                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .init(rawValue: 0)) as? [String: AnyObject] {
-                    let routes = jsonResult.index(forKey: "routes")
-                    print("direction\(routes)")
-                    let overViewPolyLine = ""/*routes!["overview_polyline"]!!["points"] as! String*/
+                if let jsonResult = try JSONSerialization.jsonObject(with: data!, options: .init(rawValue: 0)) as? Dictionary<String, AnyObject> {
+                    let routes = jsonResult["routes"]![0] as! [String: AnyObject]
+                    let overViewPolyLine = routes["overview_polyline"] as! [String: AnyObject]
+                    let polyLinePoints = overViewPolyLine["points"] as! String
                     
-                    if overViewPolyLine != "" {
+                    if polyLinePoints != "" {
                         DispatchQueue.main.async {
-                            self.addPolyLineWithEncodedStringInMap(overViewPolyLine)
+                            self.addPolyLineWithEncodedStringInMap(polyLinePoints)
                         }
                     }
                 }
@@ -87,34 +92,31 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 print("Something Wrong")
             }
         }
+        
+        task.resume()
     }
     
     func addPolyLineWithEncodedStringInMap(_ encodedString: String) {
-        
-        let camera = GMSCameraPosition.camera(withLatitude: 18.5204, longitude: 73.8567, zoom: zoomLevel)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        mapView.isMyLocationEnabled = true
-        
         let path = GMSMutablePath(fromEncodedPath: encodedString)
-        let polyLine = GMSPolyline(path: path)
-        polyLine.strokeWidth = 5
-        polyLine.strokeColor = UIColor.yellow
-        polyLine.map = mapView
+        
+        let polyline = GMSPolyline(path: path)
+        polyline.strokeColor = .blue
+        polyline.strokeWidth = 5.0
+        polyline.map = mapView
         
         let smarker = GMSMarker()
-        smarker.position = CLLocationCoordinate2D(latitude: 18.5235, longitude: 73.7184)
+        smarker.position = CLLocationCoordinate2D(latitude: 19.075, longitude: 72.877)
         smarker.title = "Lavale"
         smarker.snippet = "Maharshtra"
         smarker.map = mapView
         
         let dmarker = GMSMarker()
-        dmarker.position = CLLocationCoordinate2D(latitude: 18.7603, longitude: 73.8630)
+        dmarker.position = CLLocationCoordinate2D(latitude: 26.912, longitude: 75.787)
         dmarker.title = "Chakan"
         dmarker.snippet = "Maharshtra"
         dmarker.map = mapView
         
         view = mapView
-        
     }
     
     // MARK: CLLocationManagerDelegate
