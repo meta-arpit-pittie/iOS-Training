@@ -6,15 +6,20 @@ PODS:
     - GoogleMaps/Base
   - GooglePlaces (2.1.1):
     - GoogleMaps/Base (= 2.1.1)
+  - PubNub (4.5.11):
+    - PubNub/Core (= 4.5.11)
+  - PubNub/Core (4.5.11)
 
 DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
+  - PubNub (~> 4)
 
 SPEC CHECKSUMS:
   GoogleMaps: a5b5bbe47734e2443bde781a6aa64e69fdb6d785
   GooglePlaces: 35636d86e5020cba3856eb988c09a5491de0a65a
+  PubNub: bf767a13b65f0492f8a2f141d6af27d1e8746f2b
 
-PODFILE CHECKSUM: 9129dff22e432059710e36876a08b42233b40ee2
+PODFILE CHECKSUM: a1cd1b2855619aa2beaeed044abc120b10657546
 
 COCOAPODS: 1.1.1

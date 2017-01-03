@@ -10,4 +10,5 @@ target 'GoogleMapsIntegration' do
 
   pod 'GoogleMaps'
   pod 'GooglePlaces'
+  pod "PubNub", "~> 4"
 end
