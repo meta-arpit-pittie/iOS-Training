@@ -11,24 +11,31 @@ import GoogleMaps
 import GooglePlaces
 import PubNub
 
-class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEventListener {
+class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEventListener, GMSAutocompleteResultsViewControllerDelegate {
     
     @IBOutlet weak var mapDisplayView: GMSMapView!
     @IBOutlet weak var arrivalProgressLabel: UILabel!
+    @IBOutlet weak var customButton: UIButton!
     
     var locationManager = CLLocationManager()
-    var currentLocation: CLLocation?
-    var mapView: GMSMapView!
     var placesClient: GMSPlacesClient!
     var zoomLevel: Float = 15.0
     let directionsBasicURL = "https://maps.googleapis.com/maps/api/directions/json?"
     let googleMapsAPIKey = "AIzaSyDNkeUKOzjTcXzAubHnDdK__C38PLKbrYg"
     var timerTask = Timer()
+    
     var client: PubNub!
+    let pubNubPublishKey = "pub-c-308bbb9a-0885-4ca5-9777-8be042e62b5f"
+    let pubNubSubscribeKey = "sub-c-f9b77b14-d196-11e6-979a-02ee2ddab7fe"
+    
+    var resultsViewController: GMSAutocompleteResultsViewController?
+    var searchController: UISearchController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        placesClient = GMSPlacesClient.shared()
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
@@ -36,10 +43,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
         
-        placesClient = GMSPlacesClient.shared()
-        
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: zoomLevel)
-        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         
         mapDisplayView.isMyLocationEnabled = true
         mapDisplayView.settings.myLocationButton = true
@@ -49,13 +53,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         marker.position = camera.target
         marker.map = mapDisplayView
         
-        mapDisplayView = mapView
+        mapDisplayView.camera = camera
         
         setupPubNubNotifications()
+        
+        setupResultsViewController()
     }
     
     func setupPubNubNotifications() {
-        let configuration = PNConfiguration(publishKey: "pub-c-308bbb9a-0885-4ca5-9777-8be042e62b5f", subscribeKey: "sub-c-f9b77b14-d196-11e6-979a-02ee2ddab7fe")
+        let configuration = PNConfiguration(publishKey: pubNubPublishKey, subscribeKey: pubNubSubscribeKey)
         self.client = PubNub.clientWithConfiguration(configuration)
         self.client.addListener(self)
         self.client.subscribeToChannels(["locationUpdate"], withPresence: false)
@@ -66,10 +72,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         arrivalProgressLabel.font.withSize(24)
     }
     
+    func setupResultsViewController() {
+        resultsViewController = GMSAutocompleteResultsViewController()
+        resultsViewController?.delegate = self
+        
+        searchController = UISearchController(searchResultsController: resultsViewController)
+        searchController?.searchResultsUpdater = resultsViewController
+        
+        let subView = UIView(frame: CGRect(x: 0, y: 20, width: view.bounds.width, height: 45.0))
+        
+        subView.addSubview((searchController?.searchBar)!)
+        view.addSubview(subView)
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = false
+        
+        definesPresentationContext = true
+    }
+    
     func getDirections(_ origin: CLLocationCoordinate2D, _ destination: CLLocationCoordinate2D) {
         if origin.latitude >= 26.912 {
             timerTask.invalidate()
+            view.removeFromSuperview()
         }
+        
         let originLocation = "origin=\(origin.latitude),\(origin.longitude)"
         let destinationLocation = "&destination=\(destination.latitude),\(destination.longitude)"
         let url = URL(string: directionsBasicURL + originLocation + destinationLocation + "&key=" + googleMapsAPIKey)
@@ -107,27 +132,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
     }
     
     func addPolyLineWithEncodedStringInMap(_ encodedString: String, origin: CLLocationCoordinate2D, destination: CLLocationCoordinate2D) {
-        mapView.clear()
+        mapDisplayView.clear()
         let path = GMSMutablePath(fromEncodedPath: encodedString)
         
         let polyline = GMSPolyline(path: path)
         polyline.strokeColor = .blue
-        polyline.strokeWidth = 5.0
-        polyline.map = mapView
+        polyline.strokeWidth = 4.0
+        polyline.map = mapDisplayView
         
         let smarker = GMSMarker()
         smarker.position = origin
-        smarker.map = mapView
+        smarker.map = mapDisplayView
         
         let dmarker = GMSMarker()
         dmarker.position = destination
-        dmarker.map = mapView
+        dmarker.map = mapDisplayView
         
-        mapView.animate(toLocation: smarker.position)
+        mapDisplayView.animate(toLocation: smarker.position)
     }
     
     func updateMarkers() {
-        mapView.clear()
+        mapDisplayView.clear()
         placesClient.currentPlace(callback: { (placeLikelihoods, error) in
             if let error = error {
                 print("Current Place error \(error.localizedDescription)")
@@ -141,7 +166,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
                     let marker = GMSMarker(position: place.coordinate)
                     marker.title = place.name
                     marker.snippet = place.formattedAddress
-                    marker.map = self.mapView
+                    marker.map = self.mapDisplayView
                 }
             }
         })
@@ -160,8 +185,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         var longitude = 72.877
         getDirections(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), CLLocationCoordinate2D(latitude: 26.912, longitude: 75.787))
         setupArrivalLabel()
-        mapView.animate(toZoom: 7.0)
-        view.addSubview(mapView)
+        
+        mapDisplayView.animate(toZoom: 7.0)
         view.addSubview(arrivalProgressLabel)
         
         timerTask = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
@@ -180,11 +205,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         
         let camera = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: zoomLevel)
         
-        if mapView.isHidden {
-            mapView.isHidden = false
-            mapView.camera = camera
+        if mapDisplayView.isHidden {
+            mapDisplayView.isHidden = false
+            mapDisplayView.camera = camera
         } else {
-          mapView.animate(to: camera)
+          mapDisplayView.animate(to: camera)
         }
         
         updateMarkers()
@@ -196,21 +221,44 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
             print("Location access was restricted")
         case .denied:
             print("User deneid the access to location")
-            mapView.isHidden = false
+            mapDisplayView.isHidden = false
         case .notDetermined:
             print("Location status was not determined")
         case .authorizedAlways: fallthrough
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
             
-            mapView.isMyLocationEnabled = true
-            mapView.settings.myLocationButton = true
+            mapDisplayView.isMyLocationEnabled = true
+            mapDisplayView.settings.myLocationButton = true
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.stopUpdatingLocation()
         print("Error: \(error.localizedDescription)")
+    }
+    
+    // MARK: GMSAutocompleteResultsViewControllerDelegate
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
+                           didAutocompleteWith place: GMSPlace) {
+        searchController?.isActive = false
+        // Do something with the selected place.
+        print("Place name: \(place.name)")
+        print("Place address: \(place.formattedAddress)")
+        print("Place attributions: \(place.attributions)")
+    }
+    
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error){
+        print("Error: ", error.localizedDescription)
+    }
+    
+    // Turn the network activity indicator on and off again.
+    func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
 
 }
