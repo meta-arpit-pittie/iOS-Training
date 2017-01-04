@@ -23,6 +23,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
     let directionsBasicURL = "https://maps.googleapis.com/maps/api/directions/json?"
     let googleMapsAPIKey = "AIzaSyDNkeUKOzjTcXzAubHnDdK__C38PLKbrYg"
     var timerTask = Timer()
+    var latitude = 19.075
+    var longitude = 72.877
     
     var client: PubNub!
     let pubNubPublishKey = "pub-c-308bbb9a-0885-4ca5-9777-8be042e62b5f"
@@ -30,6 +32,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
     
     var resultsViewController: GMSAutocompleteResultsViewController?
     var searchController: UISearchController?
+    var subView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +54,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         
         let marker = GMSMarker()
         marker.position = camera.target
+        marker.icon = UIImage(named: "mapMarker")
         marker.map = mapDisplayView
         
         mapDisplayView.camera = camera
@@ -79,7 +83,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         searchController = UISearchController(searchResultsController: resultsViewController)
         searchController?.searchResultsUpdater = resultsViewController
         
-        let subView = UIView(frame: CGRect(x: 0, y: 20, width: view.bounds.width, height: 45.0))
+        subView = UIView(frame: CGRect(x: 0, y: 20, width: view.bounds.width, height: 45.0))
+        subView.tag = 100
         
         subView.addSubview((searchController?.searchBar)!)
         view.addSubview(subView)
@@ -142,10 +147,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         
         let smarker = GMSMarker()
         smarker.position = origin
+        smarker.icon = UIImage(named: "mapMarker")
         smarker.map = mapDisplayView
         
         let dmarker = GMSMarker()
         dmarker.position = destination
+        dmarker.icon = UIImage(named: "mapMarker")
         dmarker.map = mapDisplayView
         
         mapDisplayView.animate(toLocation: smarker.position)
@@ -166,6 +173,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
                     let marker = GMSMarker(position: place.coordinate)
                     marker.title = place.name
                     marker.snippet = place.formattedAddress
+                    marker.icon = UIImage(named: "mapMarker")
                     marker.map = self.mapDisplayView
                 }
             }
@@ -180,22 +188,29 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
     }
 
     // MARK: Actions
-    @IBAction func showDirectionsButtonAction(_ sender: Any) {
-        var latitude = 19.075
-        var longitude = 72.877
-        getDirections(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), CLLocationCoordinate2D(latitude: 26.912, longitude: 75.787))
-        setupArrivalLabel()
-        
-        mapDisplayView.animate(toZoom: 7.0)
-        view.addSubview(arrivalProgressLabel)
-        
-        timerTask = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
-            latitude += 0.39851
-            longitude += 0.1455
+    @IBAction func showDirectionsButtonAction(_ sender: UIButton) {
+        if sender.currentTitle == "Show Directions" {
+            getDirections(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), CLLocationCoordinate2D(latitude: 26.912, longitude: 75.787))
+            mapDisplayView.animate(toZoom: 7.0)
+            sender.setTitle("Start Ride", for: .normal)
+        } else if sender.currentTitle == "Start Ride" {
+            view.viewWithTag(100)?.removeFromSuperview()
+            setupArrivalLabel()
+            view.addSubview(arrivalProgressLabel)
+            sender.setTitle("Stop Ride", for: .normal)
             
-            let message = "{\"lat\":\(latitude),\"lng\":\(longitude)}"
-            self.client.publish(message, toChannel: self.client.channels().last!, compressed: true, withCompletion: nil)
-        })
+            timerTask = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {_ in
+                self.latitude += 0.39851
+                self.longitude += 0.1455
+                
+                let message = "{\"lat\":\(self.latitude),\"lng\":\(self.longitude)}"
+                self.client.publish(message, toChannel: self.client.channels().last!, compressed: true, withCompletion: nil)
+            })
+        } else if sender.currentTitle == "Stop Ride" {
+            timerTask.invalidate()
+            view.addSubview(subView)
+            sender.setTitle("Start Ride", for: .normal)
+        }
     }
     
     // MARK: CLLocationManagerDelegate
@@ -239,13 +254,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
     }
     
     // MARK: GMSAutocompleteResultsViewControllerDelegate
-    func resultsController(_ resultsController: GMSAutocompleteResultsViewController,
-                           didAutocompleteWith place: GMSPlace) {
+    func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
+        mapDisplayView.clear()
         searchController?.isActive = false
-        // Do something with the selected place.
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+        
+        let marker = GMSMarker()
+        marker.position = place.coordinate
+        marker.snippet = place.formattedAddress
+        marker.title = place.name
+        marker.icon = UIImage(named: "mapMarker")
+        marker.map = self.mapDisplayView
+        
+        mapDisplayView.animate(toLocation: place.coordinate)
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error){
