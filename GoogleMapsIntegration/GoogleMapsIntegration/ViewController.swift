@@ -11,7 +11,7 @@ import GoogleMaps
 import GooglePlaces
 import PubNub
 
-class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEventListener, GMSAutocompleteResultsViewControllerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEventListener, GMSAutocompleteResultsViewControllerDelegate, GMSMapViewDelegate {
     
     @IBOutlet weak var mapDisplayView: GMSMapView!
     @IBOutlet weak var arrivalProgressLabel: UILabel!
@@ -30,6 +30,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
     var latitude = 19.075
     var longitude = 72.877
     var stepNumber = 0
+    var didSetDestinationPlace: Bool = false
     
     var client: PubNub!
     let pubNubPublishKey = "pub-c-308bbb9a-0885-4ca5-9777-8be042e62b5f"
@@ -57,6 +58,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         locationManager.distanceFilter = 50
         locationManager.startUpdatingLocation()
         locationManager.delegate = self
+        
+        mapDisplayView.delegate = self
         
         let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: zoomLevel)
         
@@ -193,7 +196,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
     // MARK: Actions
     @IBAction func showDirectionsButtonAction(_ sender: UIButton) {
         if sender.currentTitle == "Show Directions" {
-            source = mapDisplayView.myLocation!.coordinate
+            source = markers["userLocation"]!.position
             getDirections(origin: source, destination: destination)
             
             sender.setTitle("Start Ride", for: .normal)
@@ -242,7 +245,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
                 self.client.publish(message, toChannel: self.client.channels().last!, compressed: true, withCompletion: nil)
                 
                 if self.stepNumber == self.numberOfSteps {
-                    self.arrivalProgressLabel.text = "You have reached your destination"
+                    DispatchQueue.main.async {
+                        self.arrivalProgressLabel.text = "\tYou have reached your destination"
+                    }
                     self.timerTask.invalidate()
                 }
             })
@@ -273,8 +278,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
             marker = GMSMarker(position: location.coordinate)
             marker.icon = UIImage(named: "mapMarker")
             marker.map = mapDisplayView
+            //marker.isDraggable = true
             
             markers["userLocation"] = marker
+            reverseGeocodeCoordinate(coordinate: location.coordinate)
         }
     }
     
@@ -304,28 +311,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
     // MARK: GMSAutocompleteResultsViewControllerDelegate
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didAutocompleteWith place: GMSPlace) {
         searchController?.isActive = false
-        polyline.map = nil
-        
-        if let destinationMarker = markers["destination"] {
-            destinationMarker.position = place.coordinate
-            destinationMarker.snippet = place.formattedAddress
-            destinationMarker.title = place.name
-        } else {
-            marker = GMSMarker()
-            marker.position = place.coordinate
-            marker.snippet = place.formattedAddress
-            marker.title = place.name
-            marker.icon = UIImage(named: "mapMarker")
-            marker.map = self.mapDisplayView
-            
-            markers["destination"] = marker
-        }
-        
-        
-        mapDisplayView.animate(toLocation: place.coordinate)
-        customButton.isEnabled = true
-        customButton.setTitle("Show Directions", for: .normal)
-        destination = place.coordinate
+        setDestinationMarker(place.coordinate)
     }
     
     func resultsController(_ resultsController: GMSAutocompleteResultsViewController, didFailAutocompleteWithError error: Error){
@@ -341,7 +327,75 @@ class ViewController: UIViewController, CLLocationManagerDelegate, PNObjectEvent
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+    // MARK: GMSMapViewDelegate
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        if let marker = markers["userLocation"], !didSetDestinationPlace {
+            marker.position = position.target
+            polyline.map = nil
+            customButton.setTitle("Show Directions", for: .normal)
+            directionDescriptionLabel.isHidden = true
+        }
+    }
+    
+    func didTapMyLocationButton(for mapView: GMSMapView) -> Bool {
+        didSetDestinationPlace = false
+        marker = markers["userLocation"]
+        marker.position = mapView.myLocation!.coordinate
+        mapView.animate(toLocation: marker.position)
+        return true
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        setDestinationMarker(coordinate)
+        
+        reverseGeocodeCoordinate(coordinate: coordinate)
+        directionDescriptionLabel.isHidden = true
+        polyline.map = nil
+        customButton.setTitle("Show Directions", for: .normal)
+        directionDescriptionLabel.isHidden = true
+    }
+    
     // MARK: Helper Functions
+    func setDestinationMarker(_ coordinate: CLLocationCoordinate2D) {
+        polyline.map = nil
+        
+        if let destinationMarker = markers["destination"] {
+            destinationMarker.position = coordinate
+        } else {
+            marker = GMSMarker()
+            marker.position = coordinate
+            marker.icon = UIImage(named: "mapMarker")
+            marker.map = self.mapDisplayView
+            
+            markers["destination"] = marker
+        }
+        
+        directionDescriptionLabel.isHidden = true
+        didSetDestinationPlace = true
+        mapDisplayView.animate(toLocation: coordinate)
+        customButton.isEnabled = true
+        customButton.setTitle("Show Directions", for: .normal)
+        destination = coordinate
+    }
+    
+    func reverseGeocodeCoordinate(coordinate: CLLocationCoordinate2D) {
+        
+        // 1
+        let geocoder = GMSGeocoder()
+        
+        // 2
+        geocoder.reverseGeocodeCoordinate(coordinate) { response, error in
+            if let address = response?.firstResult() {
+                print("address: Street \(address.thoroughfare)")
+                print("address: AreaName \(address.subLocality)")
+                print("address: City \(address.locality)")
+                print("address: State \(address.administrativeArea)")
+                print("address: Zipcode \(address.postalCode)")
+                print("address: Country \(address.country)")
+            }
+        }
+    }
+    
     func distanceCalculate(_ meters: Int) -> String {
         let kms = Double(meters) / 1000.0
         
