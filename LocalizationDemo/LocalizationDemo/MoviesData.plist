@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>Movie Title</key>
+		<string>Fury</string>
+		<key>Category</key>
+		<array>
+			<string>Action</string>
+			<string>Drama</string>
+			<string>War</string>
+		</array>
+		<key>Rating</key>
+		<real>8.300000000000001</real>
+		<key>Release Date</key>
+		<date>2014-10-16T21:00:00Z</date>
+		<key>Duration</key>
+		<integer>134</integer>
+		<key>Director</key>
+		<string>David Ayer</string>
+		<key>Stars</key>
+		<string>Brad Pitt, Shia LaBeouf, Logan Lerman</string>
+		<key>Link</key>
+		<string>http://www.imdb.com/title/tt2713180</string>
+	</dict>
+	<dict>
+		<key>Movie Title</key>
+		<string>Captain Phillips</string>
+		<key>Category</key>
+		<array>
+			<string>Biography</string>
+			<string>Drama</string>
+			<string>Thriller</string>
+		</array>
+		<key>Rating</key>
+		<real>7.9</real>
+		<key>Release Date</key>
+		<date>2013-10-10T21:00:00Z</date>
+		<key>Duration</key>
+		<integer>134</integer>
+		<key>Director</key>
+		<string>Paul Greengrass</string>
+		<key>Stars</key>
+		<string>Tom Hanks, Barkhad Abdi, Barkhad Abdirahman</string>
+		<key>Link</key>
+		<string>http://www.imdb.com/title/tt1535109</string>
+	</dict>
+	<dict>
+		<key>Movie Title</key>
+		<string>Iron Man 3</string>
+		<key>Category</key>
+		<array>
+			<string>Action</string>
+			<string>Adventure</string>
+			<string>Sci-Fi</string>
+		</array>
+		<key>Rating</key>
+		<real>7.3</real>
+		<key>Release Date</key>
+		<date>2013-05-02T21:00:00Z</date>
+		<key>Duration</key>
+		<integer>130</integer>
+		<key>Director</key>
+		<string>Shane Black</string>
+		<key>Stars</key>
+		<string>Robert Downey Jr., Guy Pearce, Gwyneth Paltrow</string>
+		<key>Link</key>
+		<string>http://www.imdb.com/title/tt1300854</string>
+	</dict>
+	<dict>
+		<key>Movie Title</key>
+		<string>Edge of Tomorrow</string>
+		<key>Category</key>
+		<array>
+			<string>Action</string>
+			<string>Sci-Fi</string>
+		</array>
+		<key>Rating</key>
+		<real>8.300000000000001</real>
+		<key>Release Date</key>
+		<date>2014-06-05T21:00:00Z</date>
+		<key>Duration</key>
+		<integer>113</integer>
+		<key>Director</key>
+		<string>Doug Liman</string>
+		<key>Stars</key>
+		<string>Tom Cruise, Emily Blunt, Bill Paxton</string>
+		<key>Link</key>
+		<string>http://www.imdb.com/title/tt1631867/</string>
+	</dict>
+	<dict>
+		<key>Movie Title</key>
+		<string>The Maze Runner</string>
+		<key>Category</key>
+		<array>
+			<string>Action</string>
+			<string>Mystery</string>
+			<string>Sci-Fi</string>
+		</array>
+		<key>Rating</key>
+		<real>7.4</real>
+		<key>Release Date</key>
+		<date>2014-09-18T21:00:00Z</date>
+		<key>Duration</key>
+		<integer>113</integer>
+		<key>Director</key>
+		<string>Wes Ball</string>
+		<key>Stars</key>
+		<string>Dylan O&apos;Brien, Kaya Scodelario, Will Poulter</string>
+		<key>Link</key>
+		<string>http://www.imdb.com/title/tt1790864/</string>
+	</dict>
+</array>
+</plist>

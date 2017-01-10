@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  LocalizationDemo
+
+  Created by Gabriel Theodoropoulos on 30/10/14.
+  Copyright (c) 2014 Appcoda. All rights reserved.
+*/
+minutes = "minutes";
+Close = "Fermer";
+Action = "Action";
+Drama = "Drame";
+War = "Guerre";
+Biography = "Biographie";
+Sci-Fi = "Sci-Fi";
+Thriller = "Thriller";
+Adventure = "Aventure";
+Mystery = "Mystère";
