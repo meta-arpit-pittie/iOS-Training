@@ -1,0 +1,30 @@
+
+/* Class = "IBUILabel"; text = "Release Date"; ObjectID = "CX9-8e-cML"; */
+"CX9-8e-cML.text" = "Erscheinungsdatum";
+
+/* Class = "IBUILabel"; text = "Rating"; ObjectID = "FJd-n3-GOf"; */
+"FJd-n3-GOf.text" = "Wertung";
+
+/* Class = "IBUILabel"; text = "Movie Title"; ObjectID = "NRq-Lz-Ex4"; */
+"NRq-Lz-Ex4.text" = "Filmtitel";
+
+/* Class = "IBUILabel"; text = "Movie Information"; ObjectID = "SBh-a4-EJR"; */
+"SBh-a4-EJR.text" = "Filminformationen";
+
+/* Class = "IBUILabel"; text = "Stars"; ObjectID = "bGs-Af-eL9"; */
+"bGs-Af-eL9.text" = "Filmstars";
+
+/* Class = "IBUIButton"; normalTitle = "Pick a Movie"; ObjectID = "dgk-XI-sgx"; */
+"dgk-XI-sgx.normalTitle" = "Wählen Sie einen Film";
+
+/* Class = "IBUILabel"; text = "Director"; ObjectID = "jnz-9e-ZT1"; */
+"jnz-9e-ZT1.text" = "Direktor";
+
+/* Class = "IBUILabel"; text = "Duration"; ObjectID = "uJE-ia-usa"; */
+"uJE-ia-usa.text" = "Dauer";
+
+/* Class = "IBUILabel"; text = "Link"; ObjectID = "vgW-o8-2Rh"; */
+"vgW-o8-2Rh.text" = "Hyperlink";
+
+/* Class = "IBUILabel"; text = "Category"; ObjectID = "yOc-zp-Qs1"; */
+"yOc-zp-Qs1.text" = "Kategorie";
