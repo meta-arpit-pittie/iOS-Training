@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import ScanditSDK
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        ScanditSDKBarcodePicker.prepare(withAppKey: "DeWOMVCxxWBbncnfE7jbOnv0vUIfdtiqaIUEvW4INlU")
+//        ScanditSDKBarcodePicker.prepare(withAppKey: "DeWOMVCxxWBbncnfE7jbOnv0vUIfdtiqaIUEvW4INlU")
         return true
     }
 
