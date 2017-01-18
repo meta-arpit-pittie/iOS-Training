@@ -7,18 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88606D2F1E2F9E92006579B8 /* ScanditBarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88606D2E1E2F9E92006579B8 /* ScanditBarcodeScanner.framework */; };
 		88BE7C751E2F4E41001E1688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE7C741E2F4E41001E1688 /* AppDelegate.swift */; };
 		88BE7C771E2F4E41001E1688 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE7C761E2F4E41001E1688 /* ViewController.swift */; };
 		88BE7C7A1E2F4E41001E1688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BE7C781E2F4E41001E1688 /* Main.storyboard */; };
 		88BE7C7C1E2F4E41001E1688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BE7C7B1E2F4E41001E1688 /* Assets.xcassets */; };
 		88BE7C7F1E2F4E41001E1688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BE7C7D1E2F4E41001E1688 /* LaunchScreen.storyboard */; };
-		88BE7C881E2F50D8001E1688 /* ScanditBarcodeScanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C871E2F50D8001E1688 /* ScanditBarcodeScanner.framework */; };
 		88BE7C8A1E2F5222001E1688 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C891E2F5222001E1688 /* libiconv.tbd */; };
 		88BE7C8C1E2F5235001E1688 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C8B1E2F5235001E1688 /* libc++.tbd */; };
 		88BE7C8E1E2F5251001E1688 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C8D1E2F5251001E1688 /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		88606D2E1E2F9E92006579B8 /* ScanditBarcodeScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScanditBarcodeScanner.framework; sourceTree = "<group>"; };
 		88BE7C711E2F4E41001E1688 /* ScanditBarcodeScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScanditBarcodeScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88BE7C741E2F4E41001E1688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88BE7C761E2F4E41001E1688 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,11 +27,9 @@
 		88BE7C7B1E2F4E41001E1688 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		88BE7C7E1E2F4E41001E1688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88BE7C801E2F4E41001E1688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		88BE7C871E2F50D8001E1688 /* ScanditBarcodeScanner.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ScanditBarcodeScanner.framework; sourceTree = "<group>"; };
 		88BE7C891E2F5222001E1688 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		88BE7C8B1E2F5235001E1688 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		88BE7C8D1E2F5251001E1688 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		88BE7C8F1E2F526A001E1688 /* ScanditBarcodeScanner.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ScanditBarcodeScanner.bundle; path = ScanditBarcodeScanner.framework/Resources/ScanditBarcodeScanner.bundle; sourceTree = "<group>"; };
 		88BE7C911E2F52B8001E1688 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,10 +38,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88606D2F1E2F9E92006579B8 /* ScanditBarcodeScanner.framework in Frameworks */,
 				88BE7C8E1E2F5251001E1688 /* libz.tbd in Frameworks */,
 				88BE7C8C1E2F5235001E1688 /* libc++.tbd in Frameworks */,
 				88BE7C8A1E2F5222001E1688 /* libiconv.tbd in Frameworks */,
-				88BE7C881E2F50D8001E1688 /* ScanditBarcodeScanner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,11 +82,10 @@
 		88BE7C861E2F50D8001E1688 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				88BE7C8F1E2F526A001E1688 /* ScanditBarcodeScanner.bundle */,
+				88606D2E1E2F9E92006579B8 /* ScanditBarcodeScanner.framework */,
 				88BE7C8D1E2F5251001E1688 /* libz.tbd */,
 				88BE7C8B1E2F5235001E1688 /* libc++.tbd */,
 				88BE7C891E2F5222001E1688 /* libiconv.tbd */,
-				88BE7C871E2F50D8001E1688 /* ScanditBarcodeScanner.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -342,6 +340,7 @@
 				88BE7C851E2F4E41001E1688 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
