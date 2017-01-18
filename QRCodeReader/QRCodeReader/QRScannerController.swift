@@ -18,16 +18,19 @@ class QRScannerController: UIViewController, AVCaptureMetadataOutputObjectsDeleg
     var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     var qrCodeFrameView:UIView?
     
-    let supportedCodeTypes = [AVMetadataObjectTypeUPCECode,
+    let supportedCodeTypes = [AVMetadataObjectTypeQRCode,
+                              AVMetadataObjectTypeEAN8Code,
+                              AVMetadataObjectTypeEAN13Code,
+                              AVMetadataObjectTypeUPCECode,
+                              AVMetadataObjectTypeAztecCode,
+                              AVMetadataObjectTypeITF14Code,
                               AVMetadataObjectTypeCode39Code,
                               AVMetadataObjectTypeCode39Mod43Code,
                               AVMetadataObjectTypeCode93Code,
                               AVMetadataObjectTypeCode128Code,
-                              AVMetadataObjectTypeEAN8Code,
-                              AVMetadataObjectTypeEAN13Code,
-                              AVMetadataObjectTypeAztecCode,
                               AVMetadataObjectTypePDF417Code,
-                              AVMetadataObjectTypeQRCode]
+                              AVMetadataObjectTypeDataMatrixCode,
+                              AVMetadataObjectTypeInterleaved2of5Code]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +83,6 @@ class QRScannerController: UIViewController, AVCaptureMetadataOutputObjectsDeleg
         let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
         
         if supportedCodeTypes.contains(metadataObj.type) {
-            print("I am here")
             let barCodeObject = videoPreviewLayer?.transformedMetadataObject(for: metadataObj)
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
