@@ -1,0 +1,384 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		88BE7C3E1E2F30BE001E1688 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE7C3D1E2F30BE001E1688 /* AppDelegate.swift */; };
+		88BE7C401E2F30BE001E1688 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE7C3F1E2F30BE001E1688 /* ViewController.swift */; };
+		88BE7C431E2F30BE001E1688 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BE7C411E2F30BE001E1688 /* Main.storyboard */; };
+		88BE7C451E2F30BE001E1688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 88BE7C441E2F30BE001E1688 /* Assets.xcassets */; };
+		88BE7C481E2F30BE001E1688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BE7C461E2F30BE001E1688 /* LaunchScreen.storyboard */; };
+		88BE7C571E2F3217001E1688 /* libBarcodeScanner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C511E2F3217001E1688 /* libBarcodeScanner.a */; };
+		88BE7C581E2F3217001E1688 /* MWOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE7C531E2F3217001E1688 /* MWOverlay.swift */; };
+		88BE7C591E2F3217001E1688 /* ScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BE7C561E2F3217001E1688 /* ScannerController.swift */; };
+		88BE7C5D1E2F3595001E1688 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C5C1E2F3595001E1688 /* CoreVideo.framework */; };
+		88BE7C5F1E2F359D001E1688 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C5E1E2F359D001E1688 /* UIKit.framework */; };
+		88BE7C621E2F35AB001E1688 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C601E2F35AB001E1688 /* AVFoundation.framework */; };
+		88BE7C631E2F35AB001E1688 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C611E2F35AB001E1688 /* Foundation.framework */; };
+		88BE7C651E2F35C9001E1688 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C641E2F35C9001E1688 /* CoreGraphics.framework */; };
+		88BE7C671E2F35D1001E1688 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88BE7C661E2F35D1001E1688 /* CoreLocation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		88BE7C3A1E2F30BE001E1688 /* ManateeWorksScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManateeWorksScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		88BE7C3D1E2F30BE001E1688 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		88BE7C3F1E2F30BE001E1688 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		88BE7C421E2F30BE001E1688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		88BE7C441E2F30BE001E1688 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		88BE7C471E2F30BE001E1688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88BE7C491E2F30BE001E1688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		88BE7C501E2F3217001E1688 /* BarcodeScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarcodeScanner.h; sourceTree = "<group>"; };
+		88BE7C511E2F3217001E1688 /* libBarcodeScanner.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBarcodeScanner.a; sourceTree = "<group>"; };
+		88BE7C521E2F3217001E1688 /* MWBAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWBAnalytics.h; sourceTree = "<group>"; };
+		88BE7C531E2F3217001E1688 /* MWOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MWOverlay.swift; sourceTree = "<group>"; };
+		88BE7C541E2F3217001E1688 /* MWParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWParser.h; sourceTree = "<group>"; };
+		88BE7C551E2F3217001E1688 /* MWResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWResult.h; sourceTree = "<group>"; };
+		88BE7C561E2F3217001E1688 /* ScannerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannerController.swift; sourceTree = "<group>"; };
+		88BE7C5A1E2F32D2001E1688 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		88BE7C5C1E2F3595001E1688 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		88BE7C5E1E2F359D001E1688 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		88BE7C601E2F35AB001E1688 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		88BE7C611E2F35AB001E1688 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		88BE7C641E2F35C9001E1688 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		88BE7C661E2F35D1001E1688 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		88BE7C371E2F30BE001E1688 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88BE7C671E2F35D1001E1688 /* CoreLocation.framework in Frameworks */,
+				88BE7C651E2F35C9001E1688 /* CoreGraphics.framework in Frameworks */,
+				88BE7C621E2F35AB001E1688 /* AVFoundation.framework in Frameworks */,
+				88BE7C631E2F35AB001E1688 /* Foundation.framework in Frameworks */,
+				88BE7C5F1E2F359D001E1688 /* UIKit.framework in Frameworks */,
+				88BE7C5D1E2F3595001E1688 /* CoreVideo.framework in Frameworks */,
+				88BE7C571E2F3217001E1688 /* libBarcodeScanner.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		88BE7C311E2F30BE001E1688 = {
+			isa = PBXGroup;
+			children = (
+				88BE7C4F1E2F3217001E1688 /* Resources */,
+				88BE7C3C1E2F30BE001E1688 /* ManateeWorksScanner */,
+				88BE7C3B1E2F30BE001E1688 /* Products */,
+				88BE7C5B1E2F3594001E1688 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		88BE7C3B1E2F30BE001E1688 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				88BE7C3A1E2F30BE001E1688 /* ManateeWorksScanner.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		88BE7C3C1E2F30BE001E1688 /* ManateeWorksScanner */ = {
+			isa = PBXGroup;
+			children = (
+				88BE7C5A1E2F32D2001E1688 /* Bridging-Header.h */,
+				88BE7C3D1E2F30BE001E1688 /* AppDelegate.swift */,
+				88BE7C3F1E2F30BE001E1688 /* ViewController.swift */,
+				88BE7C411E2F30BE001E1688 /* Main.storyboard */,
+				88BE7C441E2F30BE001E1688 /* Assets.xcassets */,
+				88BE7C461E2F30BE001E1688 /* LaunchScreen.storyboard */,
+				88BE7C491E2F30BE001E1688 /* Info.plist */,
+			);
+			path = ManateeWorksScanner;
+			sourceTree = "<group>";
+		};
+		88BE7C4F1E2F3217001E1688 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				88BE7C501E2F3217001E1688 /* BarcodeScanner.h */,
+				88BE7C511E2F3217001E1688 /* libBarcodeScanner.a */,
+				88BE7C521E2F3217001E1688 /* MWBAnalytics.h */,
+				88BE7C531E2F3217001E1688 /* MWOverlay.swift */,
+				88BE7C541E2F3217001E1688 /* MWParser.h */,
+				88BE7C551E2F3217001E1688 /* MWResult.h */,
+				88BE7C561E2F3217001E1688 /* ScannerController.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		88BE7C5B1E2F3594001E1688 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88BE7C661E2F35D1001E1688 /* CoreLocation.framework */,
+				88BE7C641E2F35C9001E1688 /* CoreGraphics.framework */,
+				88BE7C601E2F35AB001E1688 /* AVFoundation.framework */,
+				88BE7C611E2F35AB001E1688 /* Foundation.framework */,
+				88BE7C5E1E2F359D001E1688 /* UIKit.framework */,
+				88BE7C5C1E2F3595001E1688 /* CoreVideo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		88BE7C391E2F30BE001E1688 /* ManateeWorksScanner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 88BE7C4C1E2F30BE001E1688 /* Build configuration list for PBXNativeTarget "ManateeWorksScanner" */;
+			buildPhases = (
+				88BE7C361E2F30BE001E1688 /* Sources */,
+				88BE7C371E2F30BE001E1688 /* Frameworks */,
+				88BE7C381E2F30BE001E1688 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ManateeWorksScanner;
+			productName = ManateeWorksScanner;
+			productReference = 88BE7C3A1E2F30BE001E1688 /* ManateeWorksScanner.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		88BE7C321E2F30BE001E1688 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = Metacube;
+				TargetAttributes = {
+					88BE7C391E2F30BE001E1688 = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = 6LYYL32MDT;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 88BE7C351E2F30BE001E1688 /* Build configuration list for PBXProject "ManateeWorksScanner" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 88BE7C311E2F30BE001E1688;
+			productRefGroup = 88BE7C3B1E2F30BE001E1688 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				88BE7C391E2F30BE001E1688 /* ManateeWorksScanner */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		88BE7C381E2F30BE001E1688 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88BE7C481E2F30BE001E1688 /* LaunchScreen.storyboard in Resources */,
+				88BE7C451E2F30BE001E1688 /* Assets.xcassets in Resources */,
+				88BE7C431E2F30BE001E1688 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		88BE7C361E2F30BE001E1688 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88BE7C591E2F3217001E1688 /* ScannerController.swift in Sources */,
+				88BE7C581E2F3217001E1688 /* MWOverlay.swift in Sources */,
+				88BE7C401E2F30BE001E1688 /* ViewController.swift in Sources */,
+				88BE7C3E1E2F30BE001E1688 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		88BE7C411E2F30BE001E1688 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88BE7C421E2F30BE001E1688 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		88BE7C461E2F30BE001E1688 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				88BE7C471E2F30BE001E1688 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		88BE7C4A1E2F30BE001E1688 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		88BE7C4B1E2F30BE001E1688 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		88BE7C4D1E2F30BE001E1688 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6LYYL32MDT;
+				INFOPLIST_FILE = ManateeWorksScanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Resources",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.metacube.ManateeWorksScanner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ManateeWorksScanner/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		88BE7C4E1E2F30BE001E1688 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6LYYL32MDT;
+				INFOPLIST_FILE = ManateeWorksScanner/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Resources",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.metacube.ManateeWorksScanner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ManateeWorksScanner/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		88BE7C351E2F30BE001E1688 /* Build configuration list for PBXProject "ManateeWorksScanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88BE7C4A1E2F30BE001E1688 /* Debug */,
+				88BE7C4B1E2F30BE001E1688 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		88BE7C4C1E2F30BE001E1688 /* Build configuration list for PBXNativeTarget "ManateeWorksScanner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				88BE7C4D1E2F30BE001E1688 /* Debug */,
+				88BE7C4E1E2F30BE001E1688 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 88BE7C321E2F30BE001E1688 /* Project object */;
+}
