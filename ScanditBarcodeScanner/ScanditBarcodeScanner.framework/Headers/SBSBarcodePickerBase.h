@@ -98,6 +98,10 @@
  * \param zoom The percentage of the max zoom (between 0 and 1)
  * \return Whether setting the zoom was successful
  *
+ * Note that this value might be overwritten by the relative zoom value of the scan settings 
+ * (\ref SBSScanSettings#relativeZoom), if the scan settings are applied after this method has been 
+ * called.
+ *
  * \since 4.7.0
  */
 - (BOOL)setRelativeZoom:(float)zoom;

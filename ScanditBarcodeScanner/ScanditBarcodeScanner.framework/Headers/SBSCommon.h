@@ -25,11 +25,7 @@
 #   if __has_attribute(swift_private)
 #     define SBS_NOT_AVAILABLE_IN_SWIFT __attribute__((swift_private))
 #   endif
-#   if defined(SBS_SWIFT_NAME_DISABLED)
-#       define SBS_SWIFT_NAME(method)
-#   else
-#       define SBS_SWIFT_NAME(method) NS_SWIFT_NAME(method)
-#   endif
+#   define SBS_SWIFT_NAME(method) NS_SWIFT_NAME(method)
 #endif
 //! \}
 

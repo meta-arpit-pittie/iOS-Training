@@ -195,7 +195,7 @@ typedef SBSCameraSwitchVisibility CameraSwitchVisibility SBS_DEPRECATED;
  * \return Whether the change was successful.
  */
 - (BOOL)setTorchOnImage:(nonnull UIImage *)torchOnImage
-                pressed:(nonnull UIImage *)torchOnPressedImage;
+                pressed:(nonnull UIImage *)torchOnPressedImage SBS_SWIFT_NAME(setTorchOnImage(torchOnImage:torchOnPressedImage:));
 
 /**
  * \brief Sets the images which are being drawn when the torch is on.
@@ -232,7 +232,7 @@ typedef SBSCameraSwitchVisibility CameraSwitchVisibility SBS_DEPRECATED;
  * \return Whether the change was successful.
  */
 - (BOOL)setTorchOffImage:(nonnull UIImage *)torchOffImage
-                 pressed:(nonnull UIImage *)torchOffPressedImage;
+                 pressed:(nonnull UIImage *)torchOffPressedImage SBS_SWIFT_NAME(setTorchOffImage(torchOffImage:torchOffPressedImage:));
 
 /**
  * \brief Sets the images which are being drawn when the torch is off.

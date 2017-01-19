@@ -40,6 +40,27 @@ SBS_ENUM_BEGIN(SBSCodeLocationConstraint) {
 } SBS_ENUM_END(SBSCodeLocationConstraint);
 
 /**
+ * \brief An enum describing possible directions on the screen
+ *
+ * \since 5.1
+ */
+SBS_ENUM_BEGIN(SBSDirection) {
+    /**
+     * \brief Horizontal direction
+     *
+     * \since 5.1
+     */
+    SBSDirectionHorizontal = 0x01,
+    /**
+     * \brief Vertical direction
+     *
+     *
+     * \since 5.1
+     */
+    SBSDirectionVertical = 0x02,
+} SBS_ENUM_END(SBSDirection);
+
+/**
  * \brief Scanning area settings control where codes are to be searched in images/frames.
  *
  * The areas as well as the hot-spot is specified in relative coordinates. The coordinates are rotated
@@ -70,7 +91,7 @@ SBS_ENUM_BEGIN(SBSCodeLocationConstraint) {
  *
  * \since 5.0
  */
-+(instancetype)defaultPortraitSettings;
++(nonnull instancetype)defaultPortraitSettings;
 
 
 /**
@@ -78,7 +99,28 @@ SBS_ENUM_BEGIN(SBSCodeLocationConstraint) {
  *
  * \since 5.0
  */
-+(instancetype)defaultLandscapeSettings;
++(nonnull instancetype)defaultLandscapeSettings;
+
+/**
+ * \brief Create scan area settings from a JSON object.
+ *
+ * \param dict the JSON object. The following keys are understood: \c wideCodeLocationArea and
+ *    \c squareCodeLocationArea can be used to specify the code location area rectangles.
+ *    The rectangles can either be objects with \c x, \c y, \c width and \c height key-value pairs,
+ *    or a list of four floating-point values ordered as [x, y, width, height].
+ *    \c squareCodeLocationConstraint and \c wideCodeLocationConstraint can be used to set the
+ *    the respective constraint for the areas. The strings \c restrict and \c hint are mapped to
+ *    their enum counter-part. \c primaryDirection can either be set to \c vertical or
+ *    \c horizontal to specify the primary direction for scanning. Additional keys are ignored.
+ *    Keys which are not set are left as default values.
+ * \param error in case of an invalid JSON dictionary, \p error will contain more details on the 
+ *      error.
+ * \return The scan area settings, or null if it could not be parsed.
+ *
+ * @since 5.1.0
+ */
++ (nullable instancetype)settingsWithDictionary:(nonnull NSDictionary<NSString *, id> *)dict
+                                          error:(NSError * _Nullable * _Nullable)error;
 
 /**
  * \brief The area in which codes are searched.
@@ -116,6 +158,18 @@ SBS_ENUM_BEGIN(SBSCodeLocationConstraint) {
  * \since 5.0
  */
 @property (assign, nonatomic) SBSCodeLocationConstraint squareCodesLocationConstraint;
+
+/**
+ * \brief The primary direction to be used for scanning
+ *
+ * The primary direction for scanning. By default, preference is given to codes in horizontal
+ * direction. Change this to \ref SBSDirectionVertical to optimize the engine for scanning
+ * vertical codes. This only incluences recognition of wide codes and has no influence on
+ * square codes.
+ *
+ * \since 5.1
+ */
+@property (assign, nonatomic) SBSDirection primaryDirection;
 
 
 @end

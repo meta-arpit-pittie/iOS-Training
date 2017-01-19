@@ -51,13 +51,13 @@
 
 
 /**
- * \brief Returns a settings instance initialized with the values contained in dict
+ * \brief Returns a settings instance initialized with the values contained in dictionary
  *
- * \param dict Dictionary, e.g. as deserialized from JSON to use for initializing the settings.
+ * \param dictionary Dictionary, e.g. as deserialized from JSON to use for initializing the settings.
  * \param error Upon failure, will contain further details on why the settings instance could 
  *    not be created.
  */
-+ (nullable instancetype)settingsWithDictionary:(nonnull NSDictionary<NSString *, NSObject *> *)dict
++ (nullable instancetype)settingsWithDictionary:(nonnull NSDictionary<NSString *, id> *)dictionary
                                           error:(NSError * _Nullable * _Nullable)error;
 
 /**
@@ -180,6 +180,9 @@
 
 /**
  * The zoom as a percentage of the max zoom possible (between 0 and 1).
+ *
+ * Note that this value may be overwritten by calls to \ref SBSBarcodePicker#setRelativeZoom:, or 
+ * by a manual zoom operation through pinch-to-zoom.
  */
  @property (nonatomic, assign) float relativeZoom;
 

@@ -26,7 +26,16 @@
  *
  * \return new settings object
  */
-- (nonnull instancetype)init SBS_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init;
+
+/**
+ * \brief Returns a settings instance initialized with the values contained in dictionary.
+ *
+ * \param dictionary Dictionary, e.g. as deserialized from JSON to use for initializing the settings.
+ *
+ * \return new settings object
+ */
+- (nullable instancetype)initWithDictionary:(nullable NSDictionary<NSString *, id> *)dictionary SBS_DESIGNATED_INITIALIZER;
 
 /**
  * \brief Enable decoding of the given symbologies.
